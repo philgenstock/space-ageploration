@@ -1,0 +1,12 @@
+---------------------------------------------------------------------------------------------------
+Version: 0.1.0
+Date: 2025-12-24
+  Info:
+    - Initial release
+    - Project structure setup
+  Features:
+    - Placeholder for Fulgora technologies (Holmium Productivity, Holmium Circuits, Pylon, Robo Pylon, Supercharger)
+    - Placeholder for Vulcanus technologies (Ducts, Large Steam Turbine, Manufactory, Large Beacon, Industrial Rocket Silo)
+    - Placeholder for Gleba technologies (Liquid Nutrients, Universal Soil, Smart Rockets)
+    - Placeholder for Aquilo technologies (Freeze Resistant Pipes, Deep-Freezing, Cooled Computing)
+    - Placeholder for Combo technologies (Fusion Robots, Research Station)

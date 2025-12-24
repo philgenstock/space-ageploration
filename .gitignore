@@ -1,0 +1,16 @@
+/.idea/
+
+# Factorio mod specific
+*.zip
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Editor specific
+*.sublime-*
+*.code-workspace
+
+# Backup files
+*~
+*.bak
