@@ -2,6 +2,7 @@
 -- This file loads all prototypes for the mod
 
 -- Load prototype files
+require("prototypes.planet")
 require("prototypes.technology")
 require("prototypes.recipe")
 require("prototypes.item")
