@@ -3,6 +3,7 @@
 
 -- Load prototype files
 require("prototypes.planet")
+require("prototypes.space-platform")
 require("prototypes.technology")
 require("prototypes.recipe")
 require("prototypes.item")
