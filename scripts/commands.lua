@@ -52,7 +52,7 @@ commands.add_command("check-orbit-platform", "Check Nauvis Orbit platform status
   end
 end)
 
-commands.add_command("unlock-nauvis-orbit", "Unlock Nauvis Orbit technology and all prerequisites", function(event)
+commands.add_command("unlock-nauvis-orbit", "Unlock Nauvis Orbit technology and force generate the planet", function(event)
   local player = game.get_player(event.player_index)
   if not player then return end
 
@@ -86,5 +86,28 @@ commands.add_command("unlock-nauvis-orbit", "Unlock Nauvis Orbit technology and 
     player.print("Nauvis Orbit Discovery was already researched")
   end
 
-  player.print("All technologies unlocked successfully!")
+  -- Force generate the nauvis-orbit surface
+  local surface = game.surfaces["nauvis-orbit"]
+  if not surface then
+    -- Create the surface if it doesn't exist
+    surface = game.create_surface("nauvis-orbit", {
+      default_enable_all_autoplace_controls = false,
+      property_expression_names = {
+        time_of_day = 0.5,
+        elevation = 0,
+        aux = 0,
+        moisture = 0,
+        temperature = 0,
+        cliffiness = 0,
+        enemy_base_intensity = 0,
+        enemy_base_frequency = 0,
+        enemy_base_radius = 0
+      }
+    })
+
+  else
+    player.print("Nauvis Orbit surface already exists")
+  end
+
+  player.print("All technologies unlocked and planet generated successfully!")
 end)
