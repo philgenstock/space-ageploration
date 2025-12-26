@@ -1,7 +1,7 @@
 -- Space Ageploration Planets and Surfaces
 -- Define custom planets and surfaces using PlanetsLib
 
-local map_gen_settings = require("__space-ageploration__/prototypes/map-gen-settings")
+local map_gen_settings = require("map-gen-settings")
 
 PlanetsLib:extend({
   {

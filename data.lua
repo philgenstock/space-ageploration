@@ -1,4 +1,4 @@
-require("prototypes.planet")
+require("prototypes.planet.planet")
 require("prototypes.space-platform")
 require("prototypes.technology")
 require("prototypes.recipe")
