@@ -1,17 +1,28 @@
 -- Space Ageploration Planets and Surfaces
--- Define custom planets and surfaces
+-- Define custom planets and surfaces using PlanetsLib
 
-data:extend({
+local map_gen_settings = require("__space-ageploration__/prototypes/map-gen-settings")
+
+PlanetsLib:extend({
   {
     type = "planet",
     name = "nauvis-orbit",
+
+    -- Orbital parameters - orbiting Nauvis
+    orbit = {
+      parent = { type = "planet", name = "nauvis" },
+      distance = 1,
+      orientation = 0.25,
+      is_satellite = true
+    },
+
+    -- Visual properties
     icon = "__base__/graphics/icons/nauvis.png",
     icon_size = 64,
     starmap_icon = "__base__/graphics/icons/starmap-planet-nauvis.png",
     starmap_icon_size = 512,
+
     gravity_pull = 10,
-    distance = 10,
-    orientation = 0.25,
     magnitude = 1.0,
     order = "a[nauvis]-b[nauvis-orbit]",
     subgroup = "planets",
@@ -23,37 +34,28 @@ data:extend({
       ["gravity"] = 10
     },
 
-    map_gen_settings = {
-      property_expression_names = {
-        -- Always day
-        time_of_day = 0.5
-      },
-      autoplace_controls = {},
-      autoplace_settings = {
-        -- Use empty-space as the default tile for orbital locations
-        tile = {
-          settings = {
-            ["empty-space"] = {}
-          }
-        }
-      },
-      default_enable_all_autoplace_controls = false,
-      cliff_settings = {
-        cliff_elevation_0 = 1024,
-        cliff_elevation_interval = 0
-      }
-    },
+    -- Use custom map generation settings for empty space
+    map_gen_settings = map_gen_settings.nauvis_orbit(),
 
     -- Prevent spaceship travel to this location
     -- Players must use other means to access this surface
     asteroid_spawn_definitions = {},
 
     -- Hide from normal planet selection
-    hidden = true,
-
-    -- Link it conceptually to Nauvis
-    distance_from_sun = 10, -- Same as Nauvis
+    hidden = false,
 
     pollutant_type = nil -- No pollution in orbit
   }
+})
+
+data:extend({
+	{
+		type = "space-connection",
+		name = "nauvis-nauvis-orbit",
+		subgroup = "planet-connections",
+		from = "nauvis",
+		to = "nauvis-orbit",
+		order = "c",
+		length = 800,
+	},
 })

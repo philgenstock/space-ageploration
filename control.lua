@@ -1,31 +1,5 @@
 storage = storage or {}
 
-local function init_nauvis_orbit()
-  local surface = game.surfaces["nauvis-orbit"]
-
-  if not surface then
-    surface = game.create_surface("nauvis-orbit", {
-      property_expression_names = {
-        -- Force always day
-        time_of_day = 0.5
-      }
-    })
-    log("Created Nauvis Orbit surface")
-  end
-
-  if surface then
-    surface.solar_power_multiplier = 2.0
-
-    surface.freeze_daytime = true
-    surface.daytime = 0.5  -- Noon
-
-    surface.wind_speed = 0
-    surface.wind_orientation = 0
-    surface.wind_orientation_change = 0
-
-  end
-end
-
 -- Create hidden space platform for Nauvis Orbit relay
 local function create_nauvis_orbit_platform(force)
   -- Check if platform already exists
@@ -44,7 +18,7 @@ local function create_nauvis_orbit_platform(force)
 
   platform.apply_starter_pack()
 
-  platform.hidden = true
+  platform.hidden = false
 
   local hub = platform.hub
   if hub and hub.valid then
@@ -95,8 +69,7 @@ script.on_init(function()
   storage.orbital_landing_pads = {}
   storage.pending_pods = {}
 
-  -- Create Nauvis Orbit surface
-  init_nauvis_orbit()
+
 
   -- Create platforms for all forces
   init_all_platforms()
@@ -110,8 +83,6 @@ script.on_configuration_changed(function(data)
   storage.orbital_landing_pads = storage.orbital_landing_pads or {}
   storage.pending_pods = storage.pending_pods or {}
 
-  -- Ensure Nauvis Orbit exists and is properly configured
-  init_nauvis_orbit()
 
   -- Ensure all forces have platforms
   init_all_platforms()
@@ -358,5 +329,4 @@ script.on_nth_tick(60, function()
   storage.pending_pods = retry_queue
 end)
 
--- Register debug commands
-require("scripts.commands").register_all()
+require("scripts.commands")
