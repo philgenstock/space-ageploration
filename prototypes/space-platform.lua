@@ -8,6 +8,10 @@ data:extend({
     -- This starter pack creates a minimal hidden platform for Nauvis Orbit
     -- It will be invisible to players and only used for cargo relay
 
+    icon = "__space-age__/graphics/icons/space-platform-starter-pack.png",
+    icon_size = 64,
+    stack_size=1,
+
     tiles = {
       {position = {0, 0}, tile = "space-platform-foundation"},
       {position = {1, 0}, tile = "space-platform-foundation"},
@@ -26,9 +30,6 @@ data:extend({
       -- Additional entities can be added here if needed
       -- The hub is automatically placed by the engine
     },
-
-    -- Starting inventory (none needed)
-    initial_items = {},
 
     surface_create_entities = false
   }

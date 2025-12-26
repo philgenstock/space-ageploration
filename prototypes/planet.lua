@@ -5,9 +5,9 @@ data:extend({
   {
     type = "planet",
     name = "nauvis-orbit",
-    icon = "__space-age__/graphics/icons/nauvis.png",
-    icon_size = 256,
-    starmap_icon = "__space-age__/graphics/icons/starmap-planet-nauvis.png",
+    icon = "__base__/graphics/icons/nauvis.png",
+    icon_size = 64,
+    starmap_icon = "__base__/graphics/icons/starmap-planet-nauvis.png",
     starmap_icon_size = 512,
     gravity_pull = 10,
     distance = 10,
@@ -30,9 +30,10 @@ data:extend({
       },
       autoplace_controls = {},
       autoplace_settings = {
+        -- Use empty-space as the default tile for orbital locations
         tile = {
           settings = {
-            ["space-platform-foundation"] = {}
+            ["empty-space"] = {}
           }
         }
       },
