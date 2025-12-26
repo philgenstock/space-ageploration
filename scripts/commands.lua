@@ -86,17 +86,5 @@ commands.add_command("unlock-nauvis-orbit", "Unlock Nauvis Orbit technology and 
     player.print("Nauvis Orbit Discovery was already researched")
   end
 
-  -- Force generate the nauvis-orbit surface using the planet's create_surface method
-  local planet = game.planets["nauvis-orbit"]
-  if not planet then
-    player.print("Error: nauvis-orbit planet not found!")
-    return
-  end
-
-  local surface = game.surfaces["nauvis-orbit"]
-  if not surface then
-    -- Create the surface using the planet's method to ensure proper generation
-    planet.create_surface()
-  end
-  player.print("All technologies unlocked and planet generated successfully!")
+  player.print("All technologies unlocked successfully!")
 end)

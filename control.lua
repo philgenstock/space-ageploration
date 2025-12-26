@@ -61,6 +61,49 @@ local function init_all_platforms()
   end
 end
 
+script.on_event(defines.events.on_research_finished, function(event)
+  local research = event.research
+
+  if research.name == "nauvis-orbit-discovery" then
+    log("Nauvis Orbit Discovery technology researched")
+
+    local surface = game.surfaces["nauvis-orbit"]
+    if not surface then
+      local planet = game.planets["nauvis-orbit"]
+      if planet then
+        surface = planet.create_surface()
+
+        -- Place foundation tiles (5x5 grid for the cargo landing pad)
+        local tiles = {}
+        for x = -2, 2 do
+          for y = -2, 2 do
+            table.insert(tiles, {name = "space-platform-foundation", position = {x, y}})
+          end
+        end
+        surface.set_tiles(tiles)
+
+        -- Place cargo landing pad at the center
+        local pad = surface.create_entity{
+          name = "cargo-landing-pad",
+          position = {0, 0},
+          force = research.force,
+          direction = defines.direction.north
+        }
+
+        -- Chart the area around the cargo landing pad so it's visible
+        -- Chart a larger area (32x32 tiles = 1 chunk centered at origin)
+        research.force.chart(surface, {{-16, -16}, {16, 16}})
+
+        log("Created cargo landing pad and charted area on Nauvis Orbit")
+      else
+        log("Error: nauvis-orbit planet not found!")
+      end
+    else
+      log("Nauvis Orbit surface already exists")
+    end
+  end
+end)
+
 script.on_init(function()
   log("Space Ageploration initialized")
 

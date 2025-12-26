@@ -8,7 +8,6 @@ PlanetsLib:extend({
     type = "planet",
     name = "nauvis-orbit",
 
-    -- Orbital parameters - orbiting Nauvis
     orbit = {
       parent = { type = "planet", name = "nauvis" },
       distance = 1,
@@ -27,21 +26,17 @@ PlanetsLib:extend({
     order = "a[nauvis]-b[nauvis-orbit]",
     subgroup = "planets",
 
-    -- Surface properties
     surface_properties = {
       ["solar-power"] = 200,
       ["pressure"] = 100,
       ["gravity"] = 10
     },
 
-    -- Use custom map generation settings for empty space
     map_gen_settings = map_gen_settings.nauvis_orbit(),
 
-    -- Prevent spaceship travel to this location
-    -- Players must use other means to access this surface
+    
     asteroid_spawn_definitions = {},
 
-    -- Hide from normal planet selection
     hidden = false,
 
     pollutant_type = nil -- No pollution in orbit
